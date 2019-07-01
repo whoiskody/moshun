@@ -71,14 +71,14 @@ artistRouter.get('/new', (req, res) => {
 })
 
 artistRouter.get('/:artistId/edit', (req, res) => {
-  artistApi.getArtist(req.params.shopId)
-    .then((shop) => {
-      res.render('shops/editArtistForm', {artist})
+  artistApi.getArtist(req.params.artistId)
+    .then((artist) => {
+      res.render('artists/editArtistForm', {artist})
     })
 })
 
 artistRouter.get('/:artistId', (req, res) => {
-  artistApi.getArtist(req.params.shopId)
+  artistApi.getArtist(req.params.artistId)
     .then((artist) => {
       albumApi.getAlbumByArtistId(artist._id)
       .then((album) => {
