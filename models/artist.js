@@ -29,7 +29,7 @@ const ArtistSchema = new mongoose.Schema({
  name: {
    type: String,
    required: true
-})
+},
 rating: {
   type: Number,
   min: 0,
