@@ -1,0 +1,15 @@
+<h2>All Artists</h2>
+
+<a href="/artists/new">Add New Artist</a>
+
+{{#each artists}}
+    <div>
+        <a href="/artists/{{_id}}">{{name}}</a>
+        <img src="{{imgLink}}" alt="Image of {{name}}">
+        <p>{{rating}}</p>
+        <p>{{category}}</p>
+        <p>{{description}}</p>
+        
+        
+    </div>
+{{/each}}

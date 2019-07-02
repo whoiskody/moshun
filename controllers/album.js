@@ -36,9 +36,69 @@ const albumRouter = express.Router({mergeParams: true})
  *
  * TODO: delete this handler; it's just a sample
  */ 
-// templateRouter.get('/', (req, res) => {
-//   res.send(templateApi.getHelloWorldString())
-// })
+albumRouter.get('/', (req, res) => {
+  albumApi.getAlbumByArtistId(req.params.artistId)
+    .then((albums) => {
+      res.send('albums/albums')
+    })
+    .catch((err) => {
+      res.send(err)
+    })
+})
+
+albumRouter.post('/', (req, res) => {
+  albumApi.addAlbum(req.params.artistId,req.body)
+    .then(() => {
+      res.redirect('/albums')
+    })
+    .catch((err) => {
+      res.send(err)
+    })
+})
+
+albumRouter.post('/:albumId/album', (req, res) => {
+  req.body.albumId = req.params.albumId
+  console.log(req.body)
+  albumApi.addAlbum(req.body)
+    .then(() => {
+      res.send('Single item created')
+    })
+})
+
+albumRouter.get('/new', (req, res) => {
+  res.render('albums/newAlbumForm')
+})
+
+albumRouter.get('/:albumId/edit', (req, res) => {
+  albumApi.getAlbumByArtistId(req.params.albumId)
+    .then((album) => {
+      res.render('albums/editAlbumForm', {album})
+    })
+})
+
+albumRouter.get('/:albumId', (req, res) => {
+  albumApi.getAlbumByArtistId(req.params.albumId)
+    .then((album) => {
+      singleApi.getSingleByAlbumId(album._id)
+      .then((single) => {
+        res.render('albums/singleAlbum', {album, single})
+      })
+  })
+})
+
+albumRouter.put('/:albumId', (req, res) => {
+  albumApi.updateAlbum(req.params.albumId, req.body)
+    .then(() => {
+      res.redirect('/albums')
+    })
+})
+
+albumRouter.delete('/:albumId', (req, res) => {
+  albumApi.deleteAlbum(req.params.albumId)
+    .then((album) => {
+      res.redirect('/albums')
+    })
+})
 
 /* Step 6
  *

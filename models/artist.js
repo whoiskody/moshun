@@ -64,7 +64,7 @@ function addArtist(artistObject){
   return ArtistCollection.create(artistObject)
 }
 
-function getArtist(shopId) {
+function getArtist(artistId) {
   return ArtistCollection.findById(artistId)
 }
 
@@ -72,7 +72,7 @@ function updateArtist(artistId, artistObject) {
   return ArtistCollection.findByIdAndUpdate(artistId, artistObject)
 }
 
-function deleteArtist(shopId) {
+function deleteArtist(artistId) {
   return ArtistCollection.findByIdAndDelete(artistId)
 }
 

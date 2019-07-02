@@ -40,6 +40,7 @@ const artistRouter = express.Router()
 artistRouter.get('/', (req, res) => {
   artistApi.getArtists()
     .then((artists) => {
+      console.log(artists)
       res.render('artists/artists', {artists})
     })
     .catch((err) => {
@@ -78,7 +79,8 @@ artistRouter.get('/:artistId/edit', (req, res) => {
 })
 
 artistRouter.get('/:artistId', (req, res) => {
-  artistApi.getArtist(req.params.shopId)
+  console.log(req.baseUrl)
+  artistApi.getArtist(req.params.artistId)
     .then((artist) => {
       albumApi.getAlbumByArtistId(artist._id)
       .then((album) => {

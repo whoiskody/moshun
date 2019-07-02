@@ -8,14 +8,10 @@
     <input type="submit" value="Delete Artist">
 </form>
 
-<h3>Artist Albums</h3>
+<h3>Albums</h3>
 
-<a href="/artists/{{artist._id}}/albums/new">Add New Album</a>
-
-<div>
+<ul>
     {{#each Albums}}
-        <a href="/albums/{{_id}}">{{name}}</a>
-        <img src="{{imgLink}}" alt="Image of {{name}}">
-        <p>{{rating}}</p>
+        <li>{{name}}</li>
     {{/each}}
-</div>
+</ul>

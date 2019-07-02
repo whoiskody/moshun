@@ -47,8 +47,21 @@ function getAlbumByArtistId(artistId) {
   return AlbumCollection.find({artistId: artistId})
 }
 
-function addAlbum(albumObject) {
+function addAlbum(artistId,albumObject) {
+  albumObject.artistId = artistId
   return AlbumCollection.create(albumObject)
+}
+
+function getAlbum(artistId) {
+  return AlbumCollection.findById(albumId)
+}
+
+function updateAlbum(albumId, albumObject) {
+  return AlbumCollection.findByIdAndUpdate(albumId, albumObject)
+}
+
+function deleteAlbum(albumId) {
+  return AlbumCollection.findByIdAndDelete(albumId)
 }
 
 /* Step 5

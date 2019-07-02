@@ -1,0 +1,15 @@
+<h2>All Albums</h2>
+
+<a href="albums/new">Add New Album</a>
+
+{{#each albums}}
+    <div>
+        <a href="/albums/{{_id}}">{{name}}</a>
+        <img src="{{imgLink}}" alt="Image of {{name}}">
+        <p>{{rating}}</p>
+        <p>{{category}}</p>
+        <p>{{description}}</p>
+        
+        
+    </div>
+{{/each}}

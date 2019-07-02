@@ -67,7 +67,7 @@ app.get('/', (req, res) => {
     res.redirect('/artists')
 })
 app.use('/artists', artistRouter)
-app.use('/artists/:artistId/album', albumRouter)
+app.use('/artists/:artistId/albums', albumRouter)
 
 /* Step 5
  *
