@@ -37,7 +37,7 @@ const singleRouter = express.Router({mergeParams: true})
  * TODO: delete this handler; it's just a sample
  */ 
 singleRouter.get('/', (req, res) => {
-  singleApi.getSingleByArtistId(req.params.artistId)
+  singleApi.getSingleByArtistId(req.params.singleId)
   .then((singles) => {
     const artistId = req.params.artistId;
     res.render('albums/singles',{artistId, singles})
@@ -85,14 +85,15 @@ singleRouter.get('/:singleId/edit', (req, res) => {
     })
 })
 
-
-
-
-
-
-
-
-
+singleRouter.get('/:singleId', (req, res) => {
+  singleApi.getSingleByArtistId(req.params.singleId)
+    .then((single) => {
+      singleApi.getSingleByAlbumId(single._id)
+      .then((single) => {
+        res.render('albums/single', {artistId, single})
+      })
+  })
+})
 
 
 singleRouter.put('/:singleId', (req, res) => {
