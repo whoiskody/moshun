@@ -13,9 +13,9 @@
 <a href="/artists/{{artist._id}}/albums/new">Add New Album</a>
 
 <div>
-    {{#each Albums}}
-        <a href="/albums/{{_id}}">{{name}}</a>
-        <img src="{{imgLink}}" alt="Image of {{name}}">
-        <p>{{rating}}</p>
+    {{#each albums}}
+        <a href="/artists/{{_id}}/albums">{{name}}</a>
+        {{!-- <img src="{{imgLink}}" alt="Image of {{name}}">
+        <p>{{rating}}</p> --}}
     {{/each}}
 </div>

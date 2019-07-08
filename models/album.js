@@ -26,8 +26,14 @@ const mongoose = require('./connection.js')
  *
  */
 const AlbumSchema = new mongoose.Schema({
-  name: String,
-  artistId: mongoose.Types.ObjectId
+  name: {
+    type: String,
+    required: true,
+  },
+  artistId: {
+    type: String,
+    required: true,
+  }
  })
 
 /* Step 3
@@ -47,13 +53,13 @@ function getAlbumByArtistId(artistId) {
   return AlbumCollection.find({artistId: artistId})
 }
 
-function addAlbum(artistId,albumObject) {
-  albumObject.artistId = artistId
+function addAlbum(albumObject) {
+  //albumObject.artistId = artistId
   return AlbumCollection.create(albumObject)
 }
 
 function getAlbum(artistId) {
-  return AlbumCollection.findById(albumId)
+  return AlbumCollection.findById(artistId)
 }
 
 function updateAlbum(albumId, albumObject) {
@@ -71,5 +77,8 @@ function deleteAlbum(albumId) {
  */
 module.exports = {
   getAlbumByArtistId,
-  addAlbum
+  addAlbum,
+  getAlbum,
+  updateAlbum,
+  deleteAlbum
 }

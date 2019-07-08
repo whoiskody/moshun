@@ -1,4 +1,4 @@
-<form method="POST" action="/albums">
+<form method="POST" action="/artists/{{artistId}}/albums">
 
   <!--
     Template for creating input form for a string object key called stringMember
@@ -12,7 +12,15 @@
     id="name"
     />
 
-  <label for="rating">Rating:</label>
+      <input 
+    type="hidden" 
+    placeholder="name" 
+    name="albumId"
+    value="{{artistId}}" 
+    id="name"
+    />
+
+  {{!-- <label for="rating">Rating:</label>
   <input 
     type="number" 
     name="rating"
@@ -21,28 +29,12 @@
     max="5"
   />
 
-  <label for="category">Category:</label>
-  <input 
-    type="text" 
-    name="category" 
-    id="category"
-    placeholder="category"
-    />
-
-  <label for="description">Description:</label>
-  <textarea 
-    name="description" 
-    id="description"
-    cols="30"
-    rows="10"
-  ></textarea>
-
   <label for="img-link">Image Link:</label>
   <input
     type="text"
     name=:"imgLink"
     id="img-link"
-  />
+  /> --}}
 
   <input
     type="submit"

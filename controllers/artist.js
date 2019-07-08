@@ -72,9 +72,9 @@ artistRouter.get('/new', (req, res) => {
 })
 
 artistRouter.get('/:artistId/edit', (req, res) => {
-  artistApi.getArtist(req.params.shopId)
-    .then((shop) => {
-      res.render('shops/editArtistForm', {artist})
+  artistApi.getArtist(req.params.artistId)
+    .then((artist) => {
+      res.render('artists/editArtistForm', {artist})
     })
 })
 
@@ -83,8 +83,9 @@ artistRouter.get('/:artistId', (req, res) => {
   artistApi.getArtist(req.params.artistId)
     .then((artist) => {
       albumApi.getAlbumByArtistId(artist._id)
-      .then((album) => {
-        res.render('artists/singleArtist', {artist, album})
+      .then((albums) => {
+        console.log('albums', albums)
+        res.render('artists/singleArtist', {artist, albums})
       })
   })
 })
@@ -94,12 +95,15 @@ artistRouter.put('/:artistId', (req, res) => {
     .then(() => {
       res.redirect('/artists')
     })
+    .catch((err) => {
+      res.send(err)
+    })
 })
 
 artistRouter.delete('/:artistId', (req, res) => {
   artistApi.deleteArtist(req.params.artistId)
     .then((artist) => {
-      res.redirect('/artists')
+      res.redirect('/artists', {artist})
     })
 })
 

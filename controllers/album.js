@@ -39,7 +39,7 @@ const albumRouter = express.Router({mergeParams: true})
 albumRouter.get('/', (req, res) => {
   albumApi.getAlbumByArtistId(req.params.artistId)
     .then((albums) => {
-      res.send('albums/albums')
+      res.render('albums/albums', {albums})
     })
     .catch((err) => {
       res.send(err)
@@ -47,26 +47,31 @@ albumRouter.get('/', (req, res) => {
 })
 
 albumRouter.post('/', (req, res) => {
-  albumApi.addAlbum(req.params.artistId,req.body)
+  console.log(req.params)
+  
+  req.body.artistId = req.params.artistId
+  console.log(req.body)
+  albumApi.addAlbum(req.body)
     .then(() => {
-      res.redirect('/albums')
+      res.redirect('/artists')
     })
     .catch((err) => {
       res.send(err)
     })
 })
 
-albumRouter.post('/:albumId/album', (req, res) => {
-  req.body.albumId = req.params.albumId
-  console.log(req.body)
-  albumApi.addAlbum(req.body)
-    .then(() => {
-      res.send('Single item created')
-    })
-})
+// albumRouter.post('/', (req, res) => {
+//   req.body.albumId = req.params.albumId
+//   console.log(req.body)
+//   albumApi.addAlbum(req.body)
+//     .then(() => {
+//       res.send('Single item created')
+//     })
+// })
 
 albumRouter.get('/new', (req, res) => {
-  res.render('albums/newAlbumForm')
+  let artistId =  req.params.artistId
+  res.render('albums/newAlbumForm', {artistId})
 })
 
 albumRouter.get('/:albumId/edit', (req, res) => {
@@ -81,7 +86,7 @@ albumRouter.get('/:albumId', (req, res) => {
     .then((album) => {
       singleApi.getSingleByAlbumId(album._id)
       .then((single) => {
-        res.render('albums/singleAlbum', {album, single})
+        res.render('albums/singleAlbum', {artistId})
       })
   })
 })

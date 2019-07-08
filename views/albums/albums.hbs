@@ -1,14 +1,24 @@
-<h2>All Albums</h2>
+<a href="/artists">Back to all Artists</a>
 
-<a href="albums/new">Add New Album</a>
+<h2>{{artist.name}}</h2>
+<h3>{{album.name}}</h3>
+
+<a href="/artists/{{artist._id}}/edit">Edit Album</a>
+
+<form action="/artists/{{artist._id}}?_method=DELETE" method="post">
+    <input type="submit" value="Delete Album">
+</form>
+
+<h2>Album</h2>
+
+<a href="albums/new">Add New Single</a>
 
 {{#each albums}}
     <div>
-        <a href="/albums/{{_id}}">{{name}}</a>
+        <a href="/artists/{{_id}}">{{name}}</a>
         <img src="{{imgLink}}" alt="Image of {{name}}">
         <p>{{rating}}</p>
-        <p>{{category}}</p>
-        <p>{{description}}</p>
+        
         
         
     </div>
