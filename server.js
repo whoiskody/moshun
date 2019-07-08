@@ -19,6 +19,7 @@ const methodOverride = require('method-override')
  */
 const { artistRouter } = require('./controllers/artist.js')
 const { albumRouter } = require('./controllers/album.js')
+const { singleRouter } = require('./controllers/single.js')
 
 /* Step 3
  *
@@ -69,6 +70,7 @@ app.get('/', (req, res) => {
 
 app.use('/artists', artistRouter)
 app.use('/artists/:artistId/albums', albumRouter)
+app.use('/artists/:artistId/albums/singles', singleRouter)
 
 /* Step 5
  *

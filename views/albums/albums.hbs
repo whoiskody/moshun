@@ -6,13 +6,13 @@
     <input type="submit" value="Delete Album">
 </form>
 
-<h2>Song List</h2>
+<h2>Single List</h2>
 
 <a href="albums/new">Add New Single</a>
 
 {{#each albums}}
     <div>
-        <a href="/artists/{{_id}}">{{name}}</a>
+        <a href="/artists/{{_id}}/ablums/singles">{{name}}</a>
         <img src="{{imgLink}}" alt="Image of {{name}}">
         <p>{{rating}}</p>
         
