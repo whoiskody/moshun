@@ -39,7 +39,8 @@ const albumRouter = express.Router({mergeParams: true})
 albumRouter.get('/', (req, res) => {
   albumApi.getAlbumByArtistId(req.params.artistId)
     .then((albums) => {
-      res.render('albums/albums', {albums})
+      const artistId = req.params.artistId;
+      res.render('albums/albums',{artistId, albums})
     })
     .catch((err) => {
       res.send(err)
@@ -77,7 +78,8 @@ albumRouter.get('/new', (req, res) => {
 albumRouter.get('/:albumId/edit', (req, res) => {
   albumApi.getAlbumByArtistId(req.params.albumId)
     .then((album) => {
-      res.render('albums/editAlbumForm', {album})
+      const artistId = req.params.artistId;
+      res.render('albums/editAlbumForm/albums', {artistId, album})
     })
 })
 

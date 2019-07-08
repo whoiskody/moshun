@@ -33,7 +33,13 @@ const AlbumSchema = new mongoose.Schema({
   artistId: {
     type: String,
     required: true,
-  }
+  },
+  rating: {
+    type: Number,
+    min: 0,
+    max: 5
+  },
+  imgLink: String
  })
 
 /* Step 3
@@ -62,12 +68,12 @@ function getAlbum(artistId) {
   return AlbumCollection.findById(artistId)
 }
 
-function updateAlbum(albumId, albumObject) {
-  return AlbumCollection.findByIdAndUpdate(albumId, albumObject)
+function updateAlbum(artistId, albumObject) {
+  return AlbumCollection.findByIdAndUpdate(artistId, albumObject)
 }
 
-function deleteAlbum(albumId) {
-  return AlbumCollection.findByIdAndDelete(albumId)
+function deleteAlbum(albumObject) {
+  return AlbumCollection.findByIdAndDelete(artistId, albumObject)
 }
 
 /* Step 5
