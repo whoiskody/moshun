@@ -67,6 +67,7 @@ app.set('view engine', 'hbs')
 app.get('/', (req, res) => {
     res.redirect('/artists')
 })
+
 app.use('/artists', artistRouter)
 app.use('/artists/:artistId/album', albumRouter)
 app.use('/artists/:artistId/album/single', singleRouter)

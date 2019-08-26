@@ -1,24 +1,23 @@
-<form method="POST" action="/artists">
+<form method="POST" action="/artists/{{artistId}}/albums?_method=PUT">
 
   <!--
-    Template for creating input form for a string object key called stringMember
-    NOTE: for numeric input fields use `type="number"`
-  --->
-  <lable for="name">Artist Name:</lable>
+    Template for creating input form for a boolean object member
+  -->
+    <lable for="name">Artist Name:</lable>
   <input 
     type="text" 
     placeholder="name" 
     name="name" 
     id="name"
+    value="{{artist.name}}"
     />
 
   <label for="rating">Rating:</label>
   <input 
     type="number" 
-    name="rating"
+    name="rating" 
     id="rating"
-    min="0"
-    max="5"
+    value="{{artist.rating}}"
   />
 
   <label for="category">Category:</label>
@@ -27,6 +26,7 @@
     name="category" 
     id="category"
     placeholder="category"
+    value="{{artist.category}}"
     />
 
   <label for="description">Description:</label>
@@ -35,17 +35,19 @@
     id="description"
     cols="30"
     rows="10"
-  ></textarea>
+  >{{artist.description}}</textarea>
 
   <label for="img-link">Image Link:</label>
   <input
     type="text"
     name="imgLink"
     id="img-link"
+    value="{{artist.imgLink}}"
   />
 
   <input
     type="submit"
-    value="Create Artist"
+    value="Update Artist"
   />
+
 </form>

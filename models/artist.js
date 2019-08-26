@@ -40,7 +40,7 @@ description: {
   type: String,
   required: true
 },
-imgLink: String
+  imgLink: String
 })
 
 /* Step 3

@@ -1,0 +1,36 @@
+<form method="POST" action="/artists/{{artistId}}/albums">
+
+  <!--
+    Template for creating input form for a string object key called stringMember
+    NOTE: for numeric input fields use `type="number"`
+  --->
+  <lable for="name">Song Name:</lable>
+  <input 
+    type="text" 
+    placeholder="name" 
+    name="name" 
+    id="name"
+    />
+
+      <input 
+    type="hidden" 
+    placeholder="name" 
+    name="singleId"
+    value="{{artistId}}" 
+    id="name"
+    />
+
+  <label for="rating">Rating:</label>
+  <input 
+    type="number" 
+    name="rating"
+    id="rating"
+    min="0"
+    max="5"
+  />
+
+  <input
+    type="submit"
+    value="Create Album"
+  />
+</form>

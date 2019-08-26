@@ -36,9 +36,79 @@ const singleRouter = express.Router({mergeParams: true})
  *
  * TODO: delete this handler; it's just a sample
  */ 
-// templateRouter.get('/', (req, res) => {
-//   res.send(templateApi.getHelloWorldString())
+singleRouter.get('/', (req, res) => {
+  singleApi.getSingleByArtistId(req.params.singleId)
+  .then((singles) => {
+    const artistId = req.params.artistId;
+    res.render('albums/singles',{artistId, singles})
+  })
+  .catch((err) => {
+    res.send(err)
+  })
+})
+
+singleRouter.post('/', (req, res) => {
+  console.log(req.params)
+  
+  req.body.artistId = req.params.artistId
+  console.log(req.body)
+  singleRouter.post('/', (req, res) => {
+    console.log(req.params)
+    
+    req.body.artistId = req.params.artistId
+    console.log(req.body)
+      })
+      .catch((err) => {
+        res.send(err)
+    })
+  })
+
+    // singleRouter.post('/', (req, res) => {
+//   req.body.singleId = req.params.singleId
+//   console.log(req.body)
+//   singleApi.addSingle(req.body)
+//     .then(() => {
+//       res.send('Single item created')
+//     })
 // })
+
+// singleRouter.get('/new', (req, res) => {
+//   let artistId =  req.params.artistId
+//   res.render('albums/newSingleForm', {artistId})
+// })
+
+singleRouter.get('/:singleId/edit', (req, res) => {
+  singleApi.getSingleByArtistId(req.params.artistId)
+    .then((single) => {
+      const artistId = req.params.artistId;
+      res.render('singles/editSingleForm/singles', {artistId, single})
+    })
+})
+
+singleRouter.get('/:singleId', (req, res) => {
+  singleApi.getSingleByArtistId(req.params.singleId)
+    .then((single) => {
+      singleApi.getSingleByAlbumId(single._id)
+      .then((single) => {
+        res.render('albums/single', {artistId, single})
+      })
+  })
+})
+
+
+singleRouter.put('/:singleId', (req, res) => {
+  singleApi.updateSingle(req.params.artistId, req.body)
+    .then(() => {
+      res.redirect('/artists')
+    })
+})
+
+singleRouter.delete('/:singleId', (req, res) => {
+  singleApi.deleteSingle(req.params.singleId)
+    .then((single) => {
+      res.redirect('/singles', {artistId, single})
+    })
+})
 
 /* Step 6
  *

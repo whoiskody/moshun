@@ -26,8 +26,20 @@ const mongoose = require('./connection.js')
  *
  */
 const SingleSchema = new mongoose.Schema({
-  name: String,
-  albumId: mongoose.Types.ObjectId
+  name: {
+    type: String,
+    required: true,
+  },
+  artistId: {
+    type: String,
+    required: true,
+  },
+  rating: {
+    type: Number,
+    min: 0,
+    max: 5
+  },
+  imgLink: String
  })
 
 /* Step 3
@@ -51,12 +63,36 @@ function addSingle(singleObject) {
   return SingleCollection.create(singleObject)
 }
 
+function getSingleByArtistId(artistId) {
+  return SingleCollection.find({artistId: artistId})
+}
+
+function addSingle(singleObject) {
+  //singleObject.artistId = artistId
+  return SingleCollection.create(singleObject)
+}
+
+function getSingle(artistId) {
+  return SingleCollection.findById(artistId)
+}
+
+function updateSingle(artistId, singleObject) {
+  return SingleCollection.findByIdAndUpdate(artistId, singleObject)
+}
+
+function deleteSingle(singleObject) {
+  return SingleCollection.findByIdAndDelete(artistId, singleObject)
+}
+
 /* Step 5
  *
  * TODO: export all functions from this file by adding their names as keys to this
  * object
  */
 module.exports = {
-  getSingleByAlbumId,
-  addSingle
+  getSingleByArtistId,
+  addSingle,
+  getSingle,
+  updateSingle,
+  deleteSingle
 }
