@@ -48,10 +48,29 @@ albumRouter.get('/', (req, res) => {
 })
 
 albumRouter.post('/', (req, res) => {
-  albumApi.addAlbum(req.params.artistId, req.body)
-  .then(() => {
-    res.redirect(`/artists/${req.params.artistId}/`)
+  console.log(req.params)
+  
+  req.body.artistId = req.params.artistId
+  console.log(req.body)
+  albumRouter.post('/', (req, res) => {
+  console.log(req.params)
+  
+  req.body.artistId = req.params.artistId
+  console.log(req.body)
+    })
+    .catch((err) => {
+      res.send(err)
+    })
   })
+
+// albumRouter.post('/', (req, res) => {
+//   req.body.albumId = req.params.albumId
+//   console.log(req.body)
+//   albumApi.addAlbum(req.body)
+//     .then(() => {
+//       res.send('Single item created')
+//     })
+// })
 
 albumRouter.get('/new', (req, res) => {
   let artistId =  req.params.artistId
@@ -66,6 +85,15 @@ albumRouter.get('/:albumId/edit', (req, res) => {
     })
 })
 
+// albumRouter.get('/:albumId', (req, res) => {
+//   albumApi.getAlbumByArtistId(req.params.albumId)
+//     .then((album) => {
+//       singleApi.getSingleByAlbumId(album._id)
+//       .then((single) => {
+//         res.render('albums/singleAlbum', {artistId, single})
+//       })
+//   })
+// })
 
 albumRouter.put('/:albumId', (req, res) => {
   albumApi.updateAlbum(req.params.artistId, req.body)
@@ -76,7 +104,7 @@ albumRouter.put('/:albumId', (req, res) => {
 
 albumRouter.delete('/:albumId', (req, res) => {
   albumApi.deleteAlbum(req.params.albumId)
-    .then(() => {
+    .then((album) => {
       res.redirect('/albums')
     })
 })
