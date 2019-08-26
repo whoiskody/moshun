@@ -47,30 +47,24 @@ albumRouter.get('/', (req, res) => {
     })
 })
 
-albumRouter.post('/', (req, res) => {
-  console.log(req.params)
-  
-  req.body.artistId = req.params.artistId
-  console.log(req.body)
-  albumRouter.post('/', (req, res) => {
-  console.log(req.params)
-  
-  req.body.artistId = req.params.artistId
-  console.log(req.body)
-    })
-    .catch((err) => {
-      res.send(err)
-    })
-  })
-
 // albumRouter.post('/', (req, res) => {
-//   req.body.albumId = req.params.albumId
+//   console.log(req.params)
+  
+//   req.body.artistId = req.params.artistId
 //   console.log(req.body)
-//   albumApi.addAlbum(req.body)
-//     .then(() => {
-//       res.send('Single item created')
+//     .catch((err) => {
+//       res.send(err)
 //     })
-// })
+//   })
+
+albumRouter.post('/', (req, res) => {
+  req.body.albumId = req.params.albumId
+  console.log(req.body)
+  albumApi.addAlbum(req.body)
+    .then(() => {
+      res.send('Single item created')
+    })
+})
 
 albumRouter.get('/new', (req, res) => {
   let artistId =  req.params.artistId
