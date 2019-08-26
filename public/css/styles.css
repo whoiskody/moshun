@@ -15,6 +15,10 @@ a {
     text-align: center;
     grid-column-start: 3;
     font-size: 18px;
+    border: 1px solid red;
+    border-radius: 4px;
+    width: 150px;
+    height: 50px;
 }
 
 div {
