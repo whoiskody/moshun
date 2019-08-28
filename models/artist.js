@@ -18,6 +18,7 @@ const mongoose = require('./connection.js')
  * your data once you stop running your server.
  *
  */
+// global.sampleModel = [];
 
 /* Step 2
  *
@@ -25,22 +26,17 @@ const mongoose = require('./connection.js')
  * NOTE: skip this if you are not using mongoose
  *
  */
-
 const ArtistSchema = new mongoose.Schema({
  name: {
    type: String,
    required: true
-},
-rating: {
+ },
+ rating: {
   type: Number,
   min: 0,
   max: 10
-},
-genre: {
-  type: String,
-  required: true
-},
-  imgLink: String
+ },
+ imgLink: String
 })
 
 /* Step 3
@@ -56,7 +52,8 @@ const ArtistCollection = mongoose.model('Artist', ArtistSchema)
  * TODO: delete this it's just a sample
  *
  */
-function getArtists() {
+
+function getAllArtists() {
   return ArtistCollection.find()
 }
 
@@ -64,8 +61,8 @@ function getArtist(artistId) {
   return ArtistCollection.findById(artistId)
 }
 
-function addArtist(artistObject){
-  return ArtistCollection.create(artistObject)
+function addArtist(newArtist) {
+  return ArtistCollection.create(newArtist)
 }
 
 function updateArtist(artistId, updatedArtist) {
@@ -82,7 +79,7 @@ function deleteArtist(artistId) {
  * object
  */
 module.exports = {
-  getArtists,
+  getAllArtists,
   getArtist,
   addArtist,
   updateArtist,

@@ -1,36 +1,50 @@
-<div>
-  <h3>New Album</h3>
-  <form method="POST" action="/artists/{{artist._id}}/album">
+<a href="/artists/{{artist._id}}/albums">Return to Albums</a>
 
-    <lable for="name">Album Name:</lable>
-    <input 
-      type="text" 
-      placeholder="name" 
-      name="name" 
-      id="name"
-      />
+<form method="POST" action="/artists/{{artist._id}}/albums">
 
-        <input 
-      type="hidden" 
-      placeholder="name" 
-      name="singleId"
-      value="{{artistId}}" 
-      id="name"
-      />
+    <h2>Add New Album</h2>
 
-    <label for="rating">Rating:</label>
-    <input 
-      type="number" 
-      name="rating"
-      id="rating"
-      min="0"
-      max="5"
-    />
+    <div class="form-row">
+        <div class="form-group col-md-2">
+            <label for="artistName">Artist</label>
+            <input type="text" name="artistName" id="artistName" class="form-control" value="{{artist.name}}" />
+        </div>
+        <div class="form-group col-md-3">
+            <label for="name">Album</label>
+            <input type="text" class="form-control" name="name" id="name" />
+        </div>
+        <div class="form-group col-md-2">
+            <label for="rating">Rating</label>
+            <input type="number" class="form-control" name="rating" id="rating" min="0" max="10"/>
+        </div>
+        <div class="form-group col-md-2">
+            <label for="state">Genre</label>
+            <select id="genre" class="form-control" name="genre" />
+            <option selected>Choose...</option>
+            <option value="Alternative">Alternative</option>
+            <option value="Blues">Blues</option>
+            <option value="Children">Children</option>
+            <option value="Classical">Classical</option>
+            <option value="Country">Country</option>
+            <option value="Dance">Dance</option>
+            <option value="Electronic">Electronic</option>
+            <option value="Folk">Folk</option>
+            <option value="Hip-Hop/Rap">Hip-Hop/Rap</option>
+            <option value="Holiday">Holiday</option>
+            <option value="Indie">Indie</option>
+            <option value="Jazz">Jazz</option>
+            <option value="K-Pop">K-Pop</option>
+            <option value="Latin">Latin</option>
+            <option value="Opera">Opera</option>
+            <option value="Pop">Pop</option>
+            <option value="R&B/Soul">RnB/Soul</option>
+            <option value="Reggae">Reggae</option>
+            <option value="Rock">Rock</option>
+            <option value="Spoken Word">Spoken Word</option>
+            </select>
+        </div>
+    </div>
 
-    <input
-      type="submit"
-      value="Create Album"
-    />
-  </form>
+    <input type="submit" value="Create Album" />
 
-</div>
+</form>

@@ -1,0 +1,21 @@
+<body class="form-body">
+    <h1>{{artist.name}}</h1>
+    <h3>Post a review:</h3>
+    <form method="POST" action="/artists/{{artist._id}}/review">
+        <div class="form-fields">
+            <div class="form-group">
+                <label for="createdAt">Date Posted:</label>
+                <input type="date" name="createdAt" id="createdAt" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="name">Your Name:</label>
+                <input type="text" name="name" id="name" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="description">What would you like to say?</label>
+                <textarea name="description" id="description" cols="30" rows="10" class="form-control"></textarea>
+            </div>
+        </div>
+        <input type="submit" value="Create Review" />
+    </form>
+</body>

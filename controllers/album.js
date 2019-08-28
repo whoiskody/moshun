@@ -26,7 +26,7 @@ const artistApi = require('../models/artist.js')
  * TODO: rename this from templateRouter to something that makes sense. (e.g:
  * `shopRouter`)
  */
-const albumRouter = express.Router({mergeParams: true})
+const albumRouter = express.Router({ mergeParams: true })
 
 /* Step 4
  * 
@@ -36,27 +36,37 @@ const albumRouter = express.Router({mergeParams: true})
 /* Step 5
  *
  * TODO: delete this handler; it's just a sample
- */ 
+ */
+
+albumRouter.get('/', (req, res) => {
+  albumApi.getAlbumsByArtistId(req.params.artistId)
+    .then((albums) => {
+      artistApi.getArtist(req.params.artistId)
+        .then((artist) => {
+          res.render('albums/albums', { albums, artist })
+        })
+    })
+})
 
 albumRouter.post('/', (req, res) => {
   req.body.artistId = req.params.artistId
   albumApi.addAlbum(req.body)
     .then(() => {
-      res.redirect(`/artists/${req.params.artistId}`)
+      res.redirect(`/artists/${req.params.artistId}/albums`)
     })
-}) 
+})
 
-albumRouter.get('/:albumId/edit', (req, res) => {
-  albumApi.getAlbumByAlbumId(req.params.albumId)
-    .then((album) => {
-      res.render('albums/editAlbumForm',{album})
+albumRouter.get('/new', (req, res) => {
+  artistApi.getArtist(req.params.artistId)
+    .then((artist) => {
+      res.render('albums/newAlbumForm', { artist })
     })
 })
 
 albumRouter.put('/:albumId', (req, res) => {
   albumApi.updateAlbum(req.params.albumId, req.body)
     .then(() => {
-      res.redirect(`/artists/${req.params.artistId}`)
+      res.redirect(`/artists/${req.params.artistId}/albums`)
     })
     .catch((err) => {
       res.send(err)
@@ -66,9 +76,18 @@ albumRouter.put('/:albumId', (req, res) => {
 albumRouter.delete('/:albumId', (req, res) => {
   albumApi.deleteAlbum(req.params.albumId)
     .then(() => {
-      res.redirect(`/artists/${req.params.artistId}`)
+      res.redirect(`/artists/${req.params.artistId}/albums`)
     })
 })
+
+albumRouter.get('/:albumId/edit', (req, res) => {
+  albumApi.getAlbumByAlbumId(req.params.albumId)
+    .then((album) => {
+      res.render('albums/editAlbumForm', { album })
+    })
+})
+
+
 
 /* Step 6
  *

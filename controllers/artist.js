@@ -16,7 +16,7 @@ const express = require('express')
  * 
  */
 const artistApi = require('../models/artist.js')
-const albumApi = require('../models/album.js')
+const reviewApi = require('../models/review.js')
 
 /* Step 3 
  * 
@@ -38,13 +38,17 @@ const artistRouter = express.Router()
  * TODO: delete this handler; it's just a sample
  */ 
 artistRouter.get('/', (req, res) => {
-  artistApi.getArtists()
+  artistApi.getAllArtists()
     .then((artists) => {
       res.render('artists/artists', {artists})
     })
     .catch((err) => {
       res.send(err)
     })
+})
+
+artistRouter.get('/new', (req, res) => {
+  res.render('artists/newArtistForm')
 })
 
 artistRouter.post('/', (req, res) => {
@@ -57,40 +61,13 @@ artistRouter.post('/', (req, res) => {
     })
 })
 
-artistRouter.get('/new', (req, res) => {
-  res.render('artists/newArtistForm')
-})
-
 artistRouter.get('/:artistId/edit', (req, res) => {
   artistApi.getArtist(req.params.artistId)
     .then((artist) => {
-      res.render('artists/editArtistForm', {artist})
+      res.render('artists/updateArtistForm', {artist})
     })
     .catch((err) => {
       res.send(err)
-    })
-})
-
-artistRouter.get('/:artistId', (req,res) => {
-  artistApi.getArtist(req.params.artistId)
-    .then((artist) => {
-      albumApi.getAlbumByArtistId(artist._id)
-        .then((album) => {
-          res.render('artists/artist', {artist, album})
-        })
-        .catch((err) => {
-          res.send(err)
-        })
-        .catch((err) => {
-          res.send(err)
-        })
-    })
-})
-
-artistRouter.get('/:artistId/newAlbum', (req, res) => {
-  artistApi.getArtist(req.params.ArtistId)
-    .then((artist) => {
-      res.render('albums/newAlbumForm', {artist})
     })
 })
 
@@ -104,6 +81,29 @@ artistRouter.delete('/:artistId', (req, res) => {
     })
 })
 
+artistRouter.get('/:artistId', (req, res) => {
+  artistApi.getArtist(req.params.artistId)
+    .then((artist) => {
+      reviewApi.getReviewByArtistId(artist._id)
+        .then((review) => {
+          res.render('artists/artist', {artist, review})
+        })
+        .catch((err) => {
+          res.send(err)
+        })
+      .catch((err) => {
+        res.send(err)
+      })
+    })
+})
+
+artistRouter.get('/:artistId/newReview', (req, res) => {
+  artistApi.getArtist(req.params.artistId)
+    .then((artist) => {
+      res.render('reviews/newReviewForm', {artist})
+    })
+})
+
 artistRouter.put('/:artistId', (req, res) => {
   artistApi.updateArtist(req.params.artistId, req.body)
     .then(() => {
@@ -113,6 +113,10 @@ artistRouter.put('/:artistId', (req, res) => {
       res.send(err)
     })
 })
+
+
+
+
 
 /* Step 6
  *

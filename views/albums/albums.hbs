@@ -1,0 +1,39 @@
+<div><a href="/artists/{{artist._id}}">Return to {{artist.name}}'s Review Page</a></div>
+<div><a href="/artists">Return to Artist Directory</a></div>
+<h2>{{artist.name}}'s Albums</h2>
+
+<form method="GET" action="/artists/{{artist._id}}/albums/new">
+    <input type="submit" value="Create New Album">
+</form>
+
+<table class="table">
+    <thread>
+        <tr>
+            <th>Album Cover</th>
+            <th>Album</th>
+            <th>Artist</th>
+            <th>Genre</th>
+            <th>Rating</th>
+        </tr>
+    </thread>
+    <tbody>
+        {{#each albums}}
+        <tr>
+            <td>{{imgLink}}</td>
+            <td>{{albumName}}</td>
+            <td>{{artistName}}</td>
+            <td>{{genre}}</td>
+            <td>{{rating}}</td>
+            <td>
+                <form method="GET" action="/artists/{{artistId}}/albums/{{_id}}/edit">
+                    <input type="submit" value="Edit Album">
+                </form>
+
+                <form method="POST" action="/artists/{{artistId}}/albums/{{_id}}?_method=DELETE">
+                    <input type="submit" value="Delete Album">
+                </form>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>

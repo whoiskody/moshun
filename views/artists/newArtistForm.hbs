@@ -1,43 +1,29 @@
-<form method="POST" action="/artists">
-
-  <!--
-    Template for creating input form for a string object key called stringMember
-    NOTE: for numeric input fields use `type="number"`
-  --->
-  <lable for="name">Artist Name:</lable>
-  <input 
-    type="text" 
-    placeholder="name" 
-    name="name" 
-    id="name"
-    />
-
-  <label for="rating">Rating:</label>
-  <input 
-    type="number" 
-    name="rating"
-    id="rating"
-    min="0"
-    max="5"
-  />
-
-  <label for="genre">Genre:</label>
-  <input 
-    type="text" 
-    name="genre" 
-    id="genre"
-    placeholder="genre"
-    />
-
-  <label for="img-link">Image Link:</label>
-  <input
-    type="text"
-    name="imgLink"
-    id="img-link"
-  />
-
-  <input
-    type="submit"
-    value="Create Artist"
-  />
-</form>
+<a href="/artists"> Return to Artist Directory</a>
+<body class="form-body">
+    <h1>Create New Artist</h1>
+    <form method="POST" action="/artists">
+        <div class="newArtist form-fields">
+            <div class="form-group">
+                <label for="name">Artist Name:</label>
+                <input type="text" name="name" id="name" class="form-control" />
+            </div>
+            
+            
+            <div class="form-group">
+                <label for="rating">Rating:</label>
+                    <input 
+                    type="number" 
+                    name="rating"
+                    id="rating"
+                    min="0"
+                    max="5"
+                    />
+            </div>
+            <div class="form-group">
+                <label for="imgLink">Image Link:</label>
+                <input type="text" name="imgLink" id="imgLink" class="form-control" />
+            </div>
+        </div>
+        <input type="submit" value="Create Artist" class="btn-create" />
+    </form>
+</body>

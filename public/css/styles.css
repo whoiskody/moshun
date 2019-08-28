@@ -1,29 +1,86 @@
-/* 
-
-body {
-    background-color: whitesmoke;
-    display: grid;
-    grid-template-columns: 20% 60% 20% 20%;
-    grid-template-rows: 20% 20% 60% 20% 20% 60%;
+.name {
+    color: aliceblue;
 }
 
-h2 {
-    grid-column-start: 2;
-    grid-column-end: 3;
+b {
+    color: aliceblue
+}
+
+.lead.text {
+    color: aliceblue
+}
+
+#artist-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+#artist-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.newArtist .editArtist {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+}
+
+#artist-col-one {
+    padding-right: 20px;
+    margin-right: 50px;
     text-align: center;
 }
 
-a {
-    text-align: center;
-    grid-column-start: 3;
-    font-size: 18px;
-    border: 1px solid red;
+#artist-col-two {
+    padding-top: 105px;
+}
+
+#artistName {
+    padding-bottom: 30px;
+}
+
+.edit-artist {
+    margin-right: 5px;
+    width: 150px
+}
+
+.delete-artist {
+    margin-left: 5px;
+    width: 150px
+}
+
+.btn-artist {
+    width: 310px;
+    margin-top: 10px;
+}
+
+#artistImage {
+    height: 300px;
+    width: auto;
+}
+
+.post-review {
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.edit-review {
+    font-weight: bold;
+    text-decoration: none;
+    border: 1px solid rgb(213, 213, 213);
     border-radius: 4px;
+    background-color: rgb(213, 213, 213);
+    padding: 10px;
     width: 150px;
     height: 50px;
+    font-size: 15px;
 }
 
-a:hover {
+.edit-review:hover {
+    text-decoration: none;
     border-radius: 4px;
     background-color: rgb(0, 143, 252);
     border: none;
@@ -37,7 +94,214 @@ a:hover {
     margin: 5px;
 }
 
-div {
-    font-size: 16px;
-    grid-row-start: 3;
-} */
+#delete-review {
+    width: 130px;
+}
+
+.form-fields {
+    width: 500px;
+}
+
+.form-body {
+    margin-top: 20px;
+    margin-left: 30px;
+}
+
+.headest {
+    background-color: black
+}
+
+.title {
+    color: aliceblue;
+    font-size: 40px;
+
+}
+
+.btn-creat {
+    font-weight: bold;
+    text-decoration: none;
+    border: 1px solid rgb(213, 213, 213);
+    border-radius: 4px;
+    background-color: rgb(213, 213, 213);
+    padding: 10px;
+    width: 150px;
+    height: 50px;
+    font-size: 15px;
+}
+
+.btn-creat:hover {
+    text-decoration: none;
+    border-radius: 4px;
+    background-color: rgb(0, 143, 252);
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 15px;
+    padding: 10px;
+    width: 150px;
+    height: 50px;
+    transition: all 0.5s;
+    margin: 5px;
+}
+
+.btn2 {
+    font-weight: bold;
+    text-decoration: none;
+    border: 1px solid rgb(213, 213, 213);
+    border-radius: 4px;
+    background-color: rgb(213, 213, 213);
+    padding: 10px;
+    width: 150px;
+    height: 50px;
+    font-size: 15px;
+}
+
+.btn2:hover {
+    text-decoration: none;
+    border-radius: 4px;
+    background-color: rgb(0, 143, 252);
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 15px;
+    padding: 10px;
+    width: 150px;
+    height: 50px;
+    transition: all 0.5s;
+    margin: 5px;
+}
+
+a {
+    font-weight: bold;
+    text-decoration: none;
+    border: 1px solid rgb(213, 213, 213);
+    border-radius: 4px;
+    background-color: rgb(213, 213, 213);
+    padding: 10px;
+    width: 150px;
+    height: 50px;
+    font-size: 15px; 
+}
+
+a:hover {
+    text-decoration: none;
+    border-radius: 4px;
+    background-color: rgb(0, 143, 252);
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 15px;
+    padding: 10px;
+    width: 150px;
+    height: 50px;
+    transition: all 0.5s;
+    margin: 5px;
+}
+
+.btn-edit-artist {
+    font-weight: bold;
+    text-decoration: none;
+    border: 1px solid rgb(213, 213, 213);
+    border-radius: 4px;
+    background-color: rgb(213, 213, 213);
+    padding: 10px;
+    width: 150px;
+    height: 50px;
+    font-size: 15px; 
+}
+
+.btn-edit-artist:hover {
+    text-decoration: none;
+    border-radius: 4px;
+    background-color: rgb(0, 143, 252);
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 15px;
+    padding: 10px;
+    width: 150px;
+    height: 50px;
+    transition: all 0.5s;
+    margin: 5px;
+}
+
+.btn-delete-artist {
+    font-weight: bold;
+    text-decoration: none;
+    border: 1px solid rgb(213, 213, 213);
+    border-radius: 4px;
+    background-color: rgb(213, 213, 213);
+    padding: 10px;
+    width: 150px;
+    height: 50px;
+    font-size: 15px; 
+}
+
+.btn-delete-artist:hover {
+    text-decoration: none;
+    border-radius: 4px;
+    background-color: rgb(0, 143, 252);
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 15px;
+    padding: 10px;
+    width: 150px;
+    height: 50px;
+    transition: all 0.5s;
+    margin: 5px;
+}
+
+.btn-artist {
+    font-weight: bold;
+    text-decoration: none;
+    border: 1px solid rgb(213, 213, 213);
+    border-radius: 4px;
+    background-color: rgb(213, 213, 213);
+    padding: 10px;
+    width: 200px;
+    height: 50px;
+    font-size: 15px; 
+}
+
+.btn-artist:hover {
+    text-decoration: none;
+    border-radius: 4px;
+    background-color: rgb(0, 143, 252);
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 15px;
+    padding: 10px;
+    width: 200px;
+    height: 50px;
+    transition: all 0.5s;
+    margin: 5px;
+}
+
+.btn-post-review {
+    font-weight: bold;
+    text-decoration: none;
+    border: 1px solid rgb(213, 213, 213);
+    border-radius: 4px;
+    background-color: rgb(213, 213, 213);
+    padding: 10px;
+    width: 150px;
+    height: 50px;
+    font-size: 15px; 
+}
+
+.btn-post-review:hover {
+    text-decoration: none;
+    border-radius: 4px;
+    background-color: rgb(0, 143, 252);
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 15px;
+    padding: 10px;
+    width: 150px;
+    height: 50px;
+    transition: all 0.5s;
+    margin: 5px;
+}

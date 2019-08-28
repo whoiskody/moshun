@@ -1,62 +1,66 @@
-<a href="/artists">All Artists</a>
+<a href="/artists">Return to Artist Directory</a>
 
-<section class="section">
+<section class="headest">
     <div class="container">
-        <div id="column1">
-            <div id="artistName" class="rounded float-left display-4">
-                {{artist.name}}
+        <div id="artist-header">
+            <div id="artist-col-one">
+                <div class="name float-left display-4">{{artist.name}}</div>
+                <div><img src="{{artist.imgLink}}" class="img float-left" id="artistImage"
+                        alt="Image of {{artist.name}}"></div>
             </div>
-            <div>
-                <img 
-                    width="250" 
-                    height="250"
-                    src="{{artist.imgLink}}" 
-                    class="rounded float-left" 
-                    id="artistImage"
-                    alt="Image of {{artist.name}}"
-                >
+            <div id="artist-col-two">
+                <p class="lead text"><b>rating: </b>{{artist.rating}}</p>
+                <div id="artist-buttons">
+                    <form method="GET" action="/artists/{{artist._id}}/edit">
+                        <input type="submit" value="Edit Artist" class="btn-edit-artist">
+                    </form>
+
+                    <form method="POST" action="/artists/{{artist._id}}?_method=DELETE">
+                        <input type="submit" value="Delete Artist" class="btn-delete-artist">
+                    </form>
+                </div>
+
+                <form method="GET" action="/artists/{{artist._id}}/albums">
+                    <input type="submit" value="View {{artist.name}}'s Albums" class="btn-artist">
+                </form>
+
             </div>
         </div>
 
-        <div id="column2">
-            <p>Rating: {{artist.rating}}</p>
-            <p>Genre: {{artist.genre}}</p>
-            <div id="artist-buttons">
-                <form method="GET" action="/artists/{{artist._id}}/edit">
-                        <input type="submit" value="Edit Artist" class="btn btn-outline-primary btn-lg edit-artist">
-                </form>
-
-                 <form method="POST" action="/artists/{{artist._id}}?_method=DELETE">
-                        <input type="submit" value="Delete Artist" class="btn btn-outline-secondary btn-lg delete-artist">
-                </form>
-            </div>
-        </div>
     </div>
 </section>
 
-<section class="albumSection">
-    <div class="rounded display-4">Albums</div>
-    <form method="GET" action="/artists/{{artist._id}}/newAlbum">
-        <input class="btn btn-info post-comment" type="submit" value="Add Album">
+<section class="container artist-reviews">
+    <div class="rounded display-4">Artist Reviews</div>
+    <form method="GET" action="/artists/{{artist._id}}/newReview">
+        <input class="btn-post-review" type="submit" value="Post a Review">
     </form>
-    <div class="body">
-        hi
-        {{#each album}}
-        <div class="list">
-            <p>{{name}}</p>
-            <p>{{rating}}</p>
-            <p>{{imgLink}}</p>  
-        </div>
-        {{/each}}
-    </div>
+    <table class="table">
+        <thread>
+            <tr>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Review</th>
+            </tr>
+        </thread>
+        <tbody>
+            {{#each review}}
+            <tr>
+                <td>{{name}}</td>
+                <td>{{createdAt}}</td>
+                <td>{{description}}</td>
+                <td>
+                    <form method="GET" action="/artists/{{artistId}}/review/{{_id}}/edit">
+                        <input type="submit" value="Edit Review" class="edit-review">
+                    </form>
 
-    <form method="GET" action="/artists/{{artistId}}/album/{{_id}}/edit">
-                        <input type="submit" value="Edit Album" class="btn btn-outline-info" id="edit-album">
-    </form>
-
-    <form method="POST" action="/artists/{{artistId}}/album/{{_id}}?_method=DELETE">
-                        <input type="submit" value="Delete Album" class="btn btn-outline-secondary"
-                            id="delete-album">
-    </form>
-
+                    <form method="POST" action="/artists/{{artistId}}/review/{{_id}}?_method=DELETE">
+                        <input type="submit" value="Delete Review" class="btn2"
+                            id="delete-review">
+                    </form>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
 </section>

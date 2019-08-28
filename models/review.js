@@ -26,20 +26,11 @@ const mongoose = require('./connection.js')
  * NOTE: skip this if you are not using mongoose
  *
  */
-const AlbumSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true
-  },
-  artistName: String,
-  rating: {
-    type: Number,
-    min: 0,
-    max: 10
-  },
-  genre: String,
-  imgLink: String,
-  artistId: mongoose.Types.ObjectId
+const ReviewSchema = new mongoose.Schema({
+ name: String,
+ createdAt: Date,
+ description: String,
+ artistId: mongoose.Types.ObjectId
 })
 
 /* Step 3
@@ -48,7 +39,7 @@ const AlbumSchema = new mongoose.Schema({
  * NOTE: skip this if you are not using mongoose
  *
  */
-const AlbumCollection = mongoose.model('Album', AlbumSchema)
+const ReviewCollection = mongoose.model('Review', ReviewSchema)
 
 /* Step 4
  *
@@ -56,24 +47,24 @@ const AlbumCollection = mongoose.model('Album', AlbumSchema)
  *
  */
 
-function getAlbumsByArtistId(artistId) {
-  return AlbumCollection.find({artistId: artistId})
+function getReviewByArtistId(artistId) {
+  return ReviewCollection.find({artistId: artistId})
 }
 
-function addAlbum(newAlbum) {
-  return AlbumCollection.create(newAlbum)
+function addReview(reviewObject) {
+  return ReviewCollection.create(reviewObject)
 }
 
-function getAlbumByAlbumId(albumId) {
-  return AlbumCollection.findById(albumId)
+function getReviewByReviewId(reviewId) {
+  return ReviewCollection.findById(reviewId)
 }
 
-function updateAlbum(albumId, updatedAlbum) {
-  return AlbumCollection.findByIdAndUpdate(albumId, updatedAlbum)
+function updateReview(reviewId, updatedReview) {
+  return ReviewCollection.findByIdAndUpdate(reviewId, updatedReview)
 }
 
-function deleteAlbum(albumId) {
-  return AlbumCollection.findByIdAndDelete(albumId)
+function deleteReview(reviewId) {
+  return ReviewCollection.findByIdAndDelete(reviewId)
 }
 
 /* Step 5
@@ -82,9 +73,9 @@ function deleteAlbum(albumId) {
  * object
  */
 module.exports = {
-  getAlbumsByArtistId,
-  addAlbum,
-  getAlbumByAlbumId,
-  updateAlbum,
-  deleteAlbum
+  getReviewByArtistId,
+  addReview,
+  getReviewByReviewId,
+  updateReview,
+  deleteReview
 }

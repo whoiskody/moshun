@@ -1,6 +1,6 @@
 /* 
  * This is the template for a server.js file.  Follow the steps below and read
- * the comments for creating your own (or you can just copy this file).
+ * the reviews for creating your own (or you can just copy this file).
  */
 
 /* Step 1
@@ -18,8 +18,9 @@ const methodOverride = require('method-override')
  *
  */
 const { artistRouter } = require('./controllers/artist.js')
+const { reviewRouter } = require('./controllers/review.js')
 const { albumRouter } = require('./controllers/album.js')
-const { commentRouter } = require('./controllers/comment.js')
+
 
 /* Step 3
  *
@@ -35,7 +36,6 @@ app.use(express.urlencoded({extended: true}))
  *
  * ...to parse the body of the HTTP requests from a JSON string  
  */
-
 app.use(express.json())
 
 /* Step 3.b 
@@ -66,10 +66,9 @@ app.set('view engine', 'hbs')
 app.get('/', (req, res) => {
     res.redirect('/artists')
 })
-
 app.use('/artists', artistRouter)
+app.use('/artists/:artistId/review', reviewRouter)
 app.use('/artists/:artistId/albums', albumRouter)
-app.use('/artists/:artistId/comments', commentRouter)
 
 /* Step 5
  *
@@ -85,4 +84,4 @@ const PORT = process.env.PORT || 3000
  */
 app.listen(PORT, () => {
     console.log(`App is listening on PORT ${PORT}`)
-})
+}) 

@@ -1,37 +1,71 @@
-<div>
-  <h3>Edit Album</h3>
-  <form method="POST" action="/artists/{{album.artistId}}/album/{{album._id}}?_method=PUT">
+<form method="POST" action="/artists/{{album.artistId}}/albums/{{album._id}}?_method=PUT">
 
-      <lable for="name">Album Name:</lable>
-    <input 
-      type="text" 
-      placeholder="name" 
-      name="name" 
-      id="name"
-      value="{{album.name}}"
-      />
+<h2>Edit Album</h2>
 
-    <label for="rating">Rating:</label>
-    <input 
-      type="number" 
-      name="rating" 
-      id="rating"
-      value="{{album.rating}}"
-    />
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            <label for="albumName">Album Name</label>
+            <input type="text" class="form-control" name="albumName" id="albumName" value="{{album.albumName}}" />
+        </div>
+        <div class="form-group col-md-2">
+            <label for="city">City</label>
+            <input type="text" class="form-control" name="city" id="city" value="{{album.city}}" />
+        </div>
+        <div class="form-group col-md-2">
+            <label for="genre">Genre</label>
+            <select id="genre" class="form-control" name="genre" />
+            <option selected>{{album.genre}}</option>
+            <option value="Alternative">Alternative</option>
+            <option value="Blues">Blues</option>
+            <option value="Children">Children</option>
+            <option value="Classical">Classical</option>
+            <option value="Country">Country</option>
+            <option value="Dance">Dance</option>
+            <option value="Electronic">Electronic</option>
+            <option value="Folk">Folk</option>
+            <option value="Hip-Hop/Rap">Hip-Hop/Rap</option>
+            <option value="Holiday">Holiday</option>
+            <option value="Indie">Indie</option>
+            <option value="Jazz">Jazz</option>
+            <option value="K-Pop">K-Pop</option>
+            <option value="Latin">Latin</option>
+            <option value="Opera">Opera</option>
+            <option value="Pop">Pop</option>
+            <option value="R&B/Soul">RnB/Soul</option>
+            <option value="Reggae">Reggae</option>
+            <option value="Rock">Rock</option>
+            <option value="Spoken Word">Spoken Word</option>
+            </select>
+        </div>
+    </div>
 
-    <label for="img-link">Image Link:</label>
-    <input
-      type="text"
-      name="imgLink"
-      id="img-link"
-      value="{{album.imgLink}}"
-    />
+    <h2>Dog Information</h2>
 
-    <input
-      type="submit"
-      value="Update Album"
-    />
+    <div class="form-row">
+        <div class="form-group col-md-2">
+            <label for="dogName">Name</label>
+            <input type="text" name="dogName" id="dogName" class="form-control" value="{{album.dogName}}" />
+        </div>
+        <div class="form-group col-md-1">
+            <label for="gender">Gender</label>
+            <select name="gender" id="gender" class="form-control" value="{{album.gender}}">
+                <option selected>{{album.gender}}</option>
+                <option value="Female">Female</option>
+                <option value="Male">Male</option>
+            </select>
+        </div>
+        <div class="form-group col-md-1">
+            <label for="age">Age</label>
+            <select name="age" id="age" class="form-control" value="{{album.age}}">
+                <option selected>{{album.age}}</option>
+                <option value="Puppy">Puppy</option>
+                <option value="Young">Young</option>
+                <option value="Adult">Adult</option>
+                <option value="Senior">Senior</option>
+            </select>
+        </div>
+    </div>
 
-  </form>  
-</div>
+    <input type="submit" value="Update Album" />
 
+</form>

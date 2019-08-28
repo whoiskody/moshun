@@ -1,0 +1,61 @@
+<body class="form-body">
+    <h1>Edit Artist</h1>
+    <form method="POST" action="/artists/{{artist._id}}?_method=PUT">
+        <div class="editArtist form-fields">
+            <div class="form-group">
+                <label for="name">Artist Name:</label>
+                <input type="text" name="name" id="name" class="form-control" value="{{artist.name}}" />
+            </div>
+            <div class="form-group">
+                <label for="akcGroup">AKC Group:</label>
+                <select name="akcGroup" id="akcGroup" class="form-control" value="{{artist.akcGroup}}">
+                    <option>--Select--</option>
+                    <option>Herding</option>
+                    <option>Hound</option>
+                    <option>Non-Sporting</option>
+                    <option>Sporting</option>
+                    <option>Terrier</option>
+                    <option>Toy</option>
+                    <option>Working</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="size">Size:</label>
+                <select name="size" id="size" class="form-control" value="{{artist.size}}">
+                    <option>--Select--</option>
+                    <option>XSmall</option>
+                    <option>Small</option>
+                    <option>Medium</option>
+                    <option>Large</option>
+                    <option>XLarge</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="shedding">Shedding:</label>
+                <select name="shedding" id="shedding" class="form-control" value="{{artist.shedding}}">
+                    <option>--Select--</option>
+                    <option>Infrequent</option>
+                    <option>Occasional</option>
+                    <option>Seasonal</option>
+                    <option>Frequent</option>
+                    <option>Heavy/Year-Round</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="activityLevel">Activity Level:</label>
+                <select name="activityLevel" id="activityLevel" class="form-control" value="{{artist.activityLevel}}">
+                    <option>--Select--</option>
+                    <option>Needs Lots of Activity</option>
+                    <option>Regular Exercise</option>
+                    <option>Energetic</option>
+                    <option>Calm</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="imgLink">Image Link:</label>
+                <input type="text" name="imgLink" id="imgLink" class="form-control" value="{{artist.imgLink}}" />
+            </div>
+        </div>
+        <input type="submit" value="Update Artist" />
+    </form>
+</body>

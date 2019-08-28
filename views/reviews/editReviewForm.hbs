@@ -1,0 +1,20 @@
+<body class="form-body">
+    <h3>Edit review:</h3>
+    <form method="POST" action="/artists/{{review.artistId}}/review/{{review._id}}?_method=PUT">
+        <div class="form-fields">
+            <div class="form-group">
+                <label for="name">Submitted By:</label>
+                <input type="text" name="name" id="name" value="{{review.name}}" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="createdAt">Date Submitted:</label>
+                <input type="date" name="createdAt" id="createdAt" value="{{review.createdAt}}" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="description">Review:</label>
+                <textarea name="description" id="description" cols="30" rows="10" class="form-control" value="review.description">{{review.description}}</textarea>
+            </div>
+            <input type="submit" value="Update Review" />
+        </div>
+    </form>
+<body>
