@@ -4,12 +4,20 @@
 
     <div class="form-row">
         <div class="form-group col-md-3">
-            <label for="albumName">Album Name</label>
-            <input type="text" class="form-control" name="albumName" id="albumName" value="{{album.albumName}}" />
-        </div>
-        <div class="form-group col-md-2">
-            <label for="city">City</label>
-            <input type="text" class="form-control" name="city" id="city" value="{{album.city}}" />
+            <label for="name">Name</label>
+                <input 
+                    type="text" 
+                    name="name" 
+                    id="name" 
+                    value="{{album.name}}" />
+            <label for="rating">Rating:</label>
+                <input 
+                type="number" 
+                name="rating"
+                id="rating"
+                min="0"
+                max="10"
+                />
         </div>
         <div class="form-group col-md-2">
             <label for="genre">Genre</label>
@@ -39,32 +47,6 @@
         </div>
     </div>
 
-    <h2>Dog Information</h2>
-
-    <div class="form-row">
-        <div class="form-group col-md-2">
-            <label for="dogName">Name</label>
-            <input type="text" name="dogName" id="dogName" class="form-control" value="{{album.dogName}}" />
-        </div>
-        <div class="form-group col-md-1">
-            <label for="gender">Gender</label>
-            <select name="gender" id="gender" class="form-control" value="{{album.gender}}">
-                <option selected>{{album.gender}}</option>
-                <option value="Female">Female</option>
-                <option value="Male">Male</option>
-            </select>
-        </div>
-        <div class="form-group col-md-1">
-            <label for="age">Age</label>
-            <select name="age" id="age" class="form-control" value="{{album.age}}">
-                <option selected>{{album.age}}</option>
-                <option value="Puppy">Puppy</option>
-                <option value="Young">Young</option>
-                <option value="Adult">Adult</option>
-                <option value="Senior">Senior</option>
-            </select>
-        </div>
-    </div>
 
     <input type="submit" value="Update Album" />
 
