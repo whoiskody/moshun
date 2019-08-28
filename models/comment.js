@@ -25,20 +25,22 @@ const mongoose = require('./connection.js')
  * NOTE: skip this if you are not using mongoose
  *
  */
-const SingleSchema = new mongoose.Schema({
+const CommentSchema = new mongoose.Schema({
+  artistId: mongoose.Types.ObjectId,
   name: {
     type: String,
     required: true,
   },
-  artistId: {
-    type: String,
-    required: true,
-  },
+  // artistId: {
+  //   type: String,
+  //   required: true,
+  // },
   rating: {
     type: Number,
     min: 0,
-    max: 5
+    max: 10
   },
+  review: String,
   imgLink: String
  })
 
@@ -48,40 +50,31 @@ const SingleSchema = new mongoose.Schema({
  * NOTE: skip this if you are not using mongoose
  *
  */
-const SingleCollection = mongoose.model('Single', SingleSchema)
+const CommentCollection = mongoose.model('Comment', CommentSchema)
 
 /* Step 4
  *
  * TODO: delete this it's just a sample
  *
  */
-function getSingleByAlbumId(albumId) {
-  return SingleCollection.find({albumId: albumId})
+function getCommentByArtistId(artistId) {
+  return CommentCollection.find({artistId: artistId})
 }
 
-function addSingle(singleObject) {
-  return SingleCollection.create(singleObject)
+function addComment(newComment) {
+  return CommentCollection.create(newComment)
 }
 
-function getSingleByArtistId(artistId) {
-  return SingleCollection.find({artistId: artistId})
+function getCommentByCommentId(commentId) {
+  return CommentCollection.findById({commentId})
 }
 
-function addSingle(singleObject) {
-  //singleObject.artistId = artistId
-  return SingleCollection.create(singleObject)
+function updateComment(commentId, updatedComment) {
+  return CommentCollection.findByIdAndUpdate(commentId, updatedComment)
 }
 
-function getSingle(artistId) {
-  return SingleCollection.findById(artistId)
-}
-
-function updateSingle(artistId, singleObject) {
-  return SingleCollection.findByIdAndUpdate(artistId, singleObject)
-}
-
-function deleteSingle(singleObject) {
-  return SingleCollection.findByIdAndDelete(artistId, singleObject)
+function deleteComment(commentId) {
+  return CommentCollection.findByIdAndDelete(commentId)
 }
 
 /* Step 5
@@ -90,9 +83,9 @@ function deleteSingle(singleObject) {
  * object
  */
 module.exports = {
-  getSingleByArtistId,
-  addSingle,
-  getSingle,
-  updateSingle,
-  deleteSingle
+  getCommentByArtistId,
+  addComment,
+  getCommentByCommentId,
+  updateComment,
+  deleteComment
 }

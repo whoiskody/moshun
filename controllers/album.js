@@ -16,6 +16,7 @@ const express = require('express')
  * 
  */
 const albumApi = require('../models/album.js')
+const artistApi = require('../models/artist.js')
 
 /* Step 3 
  * 
@@ -36,72 +37,36 @@ const albumRouter = express.Router({mergeParams: true})
  *
  * TODO: delete this handler; it's just a sample
  */ 
-albumRouter.get('/', (req, res) => {
-  albumApi.getAlbumByArtistId(req.params.artistId)
-    .then((albums) => {
-      const artistId = req.params.artistId;
-      res.render('albums/albums',{artistId, albums})
+
+albumRouter.post('/', (req, res) => {
+  req.body.artistId = req.params.artistId
+  albumApi.addAlbum(req.body)
+    .then(() => {
+      res.redirect(`/artists/${req.params.artistId}`)
+    })
+}) 
+
+albumRouter.get('/:albumId/edit', (req, res) => {
+  albumApi.getAlbumByAlbumId(req.params.albumId)
+    .then((album) => {
+      res.render('albums/editAlbumForm',{album})
+    })
+})
+
+albumRouter.put('/:albumId', (req, res) => {
+  albumApi.updateAlbum(req.params.albumId, req.body)
+    .then(() => {
+      res.redirect(`/artists/${req.params.artistId}`)
     })
     .catch((err) => {
       res.send(err)
     })
 })
 
-// albumRouter.post('/:artistId/album', (req, res) => {
-//   req.body.artistId = req.params.artistId
-//   console.log(req.body)
-//   albumApi.addAlbum(req.body)
-//     .then(() => {
-//       res.send('Album item created')
-//     })
-//     .catch((err) => {
-//       res.send(err)
-//     })
-// })
-
-albumRouter.post('/', (req, res) => {
-  req.body.artistId = req.params.artistId
-  console.log(req.body)
-  albumApi.addAlbum(req.body)
-    .then(() => {
-      res.redirect('/artists')
-    })
-})
-
-albumRouter.get('/new', (req, res) => {
-  let artistId =  req.params.artistId
-  res.render('albums/newAlbumForm', {artistId})
-})
-
-albumRouter.get('/:albumId/edit', (req, res) => {
-  albumApi.getAlbumByArtistId(req.params.artistId)
-    .then((album) => {
-      const artistId = req.params.artistId;
-      res.render('albums/editAlbumForm/albums', {artistId, album})
-    })
-})
-
-// albumRouter.get('/:albumId', (req, res) => {
-//   albumApi.getAlbumByArtistId(req.params.albumId)
-//     .then((album) => {
-//       singleApi.getSingleByAlbumId(album._id)
-//       .then((single) => {
-//         res.render('albums/singleAlbum', {artistId, single})
-//       })
-//   })
-// })
-
-albumRouter.put('/:albumId', (req, res) => {
-  albumApi.updateAlbum(req.params.artistId, req.body)
-    .then(() => {
-      res.redirect('/artists')
-    })
-})
-
 albumRouter.delete('/:albumId', (req, res) => {
   albumApi.deleteAlbum(req.params.albumId)
-    .then((album) => {
-      res.redirect('/albums')
+    .then(() => {
+      res.redirect(`/artists/${req.params.artistId}`)
     })
 })
 

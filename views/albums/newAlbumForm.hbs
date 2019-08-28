@@ -1,33 +1,36 @@
-<form method="POST" action="/artists/{{artistId}}/albums">
+<div>
+  <h3>New Album</h3>
+  <form method="POST" action="/artists/{{artist._id}}/album">
 
+    <lable for="name">Album Name:</lable>
+    <input 
+      type="text" 
+      placeholder="name" 
+      name="name" 
+      id="name"
+      />
 
-  <lable for="name">Album Name:</lable>
-  <input 
-    type="text" 
-    placeholder="name" 
-    name="name" 
-    id="name"
+        <input 
+      type="hidden" 
+      placeholder="name" 
+      name="singleId"
+      value="{{artistId}}" 
+      id="name"
+      />
+
+    <label for="rating">Rating:</label>
+    <input 
+      type="number" 
+      name="rating"
+      id="rating"
+      min="0"
+      max="5"
     />
 
-      <input 
-    type="hidden" 
-    placeholder="name" 
-    name="singleId"
-    value="{{artistId}}" 
-    id="name"
+    <input
+      type="submit"
+      value="Create Album"
     />
+  </form>
 
-  <label for="rating">Rating:</label>
-  <input 
-    type="number" 
-    name="rating"
-    id="rating"
-    min="0"
-    max="5"
-  />
-
-  <input
-    type="submit"
-    value="Create Album"
-  />
-</form>
+</div>

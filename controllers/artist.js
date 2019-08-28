@@ -40,7 +40,6 @@ const artistRouter = express.Router()
 artistRouter.get('/', (req, res) => {
   artistApi.getArtists()
     .then((artists) => {
-      console.log(artists)
       res.render('artists/artists', {artists})
     })
     .catch((err) => {
@@ -58,15 +57,6 @@ artistRouter.post('/', (req, res) => {
     })
 })
 
-artistRouter.post('/:artistId/album', (req, res) => {
-  req.body.artistId = req.params.artistId
-  console.log(req.body)
-  albumApi.addAlbum(req.body)
-    .then(() => {
-      res.send('Album item created')
-    })
-})
-
 artistRouter.get('/new', (req, res) => {
   res.render('artists/newArtistForm')
 })
@@ -76,22 +66,36 @@ artistRouter.get('/:artistId/edit', (req, res) => {
     .then((artist) => {
       res.render('artists/editArtistForm', {artist})
     })
+    .catch((err) => {
+      res.send(err)
+    })
 })
 
-artistRouter.get('/:artistId', (req, res) => {
-  console.log(req.baseUrl)
+artistRouter.get('/:artistId', (req,res) => {
   artistApi.getArtist(req.params.artistId)
     .then((artist) => {
       albumApi.getAlbumByArtistId(artist._id)
-      .then((albums) => {
-        console.log('albums', albums)
-        res.render('artists/singleArtist', {artist, albums})
-      })
-  })
+        .then((album) => {
+          res.render('artists/artist', {artist, album})
+        })
+        .catch((err) => {
+          res.send(err)
+        })
+        .catch((err) => {
+          res.send(err)
+        })
+    })
 })
 
-artistRouter.put('/:artistId', (req, res) => {
-  artistApi.updateArtist(req.params.artistId, req.body)
+artistRouter.get('/:artistId/newAlbum', (req, res) => {
+  artistApi.getArtist(req.params.ArtistId)
+    .then((artist) => {
+      res.render('albums/newAlbumForm', {artist})
+    })
+})
+
+artistRouter.delete('/:artistId', (req, res) => {
+  artistApi.deleteArtist(req.params.artistId)
     .then(() => {
       res.redirect('/artists')
     })
@@ -100,10 +104,13 @@ artistRouter.put('/:artistId', (req, res) => {
     })
 })
 
-artistRouter.delete('/:artistId', (req, res) => {
-  artistApi.deleteArtist(req.params.artistId)
-    .then((artist) => {
-      res.redirect('/artists', {artist})
+artistRouter.put('/:artistId', (req, res) => {
+  artistApi.updateArtist(req.params.artistId, req.body)
+    .then(() => {
+      res.redirect(`/artists/${req.params.artistId}`)
+    })
+    .catch((err) => {
+      res.send(err)
     })
 })
 

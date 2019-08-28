@@ -25,6 +25,7 @@ const mongoose = require('./connection.js')
  * NOTE: skip this if you are not using mongoose
  *
  */
+
 const ArtistSchema = new mongoose.Schema({
  name: {
    type: String,
@@ -33,10 +34,9 @@ const ArtistSchema = new mongoose.Schema({
 rating: {
   type: Number,
   min: 0,
-  max: 5
+  max: 10
 },
-category: String,
-description: {
+genre: {
   type: String,
   required: true
 },
@@ -60,16 +60,16 @@ function getArtists() {
   return ArtistCollection.find()
 }
 
-function addArtist(artistObject){
-  return ArtistCollection.create(artistObject)
-}
-
 function getArtist(artistId) {
   return ArtistCollection.findById(artistId)
 }
 
-function updateArtist(artistId, artistObject) {
-  return ArtistCollection.findByIdAndUpdate(artistId, artistObject)
+function addArtist(artistObject){
+  return ArtistCollection.create(artistObject)
+}
+
+function updateArtist(artistId, updatedArtist) {
+  return ArtistCollection.findByIdAndUpdate(artistId, updatedArtist)
 }
 
 function deleteArtist(artistId) {
@@ -83,8 +83,8 @@ function deleteArtist(artistId) {
  */
 module.exports = {
   getArtists,
-  addArtist,
   getArtist,
+  addArtist,
   updateArtist,
   deleteArtist
 }

@@ -1,53 +1,37 @@
-<form method="POST" action="/artists/{{artistId}}/albums?_method=PUT">
+<div>
+  <h3>Edit Album</h3>
+  <form method="POST" action="/artists/{{album.artistId}}/album/{{album._id}}?_method=PUT">
 
-  <!--
-    Template for creating input form for a boolean object member
-  -->
-    <lable for="name">Artist Name:</lable>
-  <input 
-    type="text" 
-    placeholder="name" 
-    name="name" 
-    id="name"
-    value="{{artist.name}}"
+      <lable for="name">Album Name:</lable>
+    <input 
+      type="text" 
+      placeholder="name" 
+      name="name" 
+      id="name"
+      value="{{album.name}}"
+      />
+
+    <label for="rating">Rating:</label>
+    <input 
+      type="number" 
+      name="rating" 
+      id="rating"
+      value="{{album.rating}}"
     />
 
-  <label for="rating">Rating:</label>
-  <input 
-    type="number" 
-    name="rating" 
-    id="rating"
-    value="{{artist.rating}}"
-  />
-
-  <label for="category">Category:</label>
-  <input 
-    type="text" 
-    name="category" 
-    id="category"
-    placeholder="category"
-    value="{{artist.category}}"
+    <label for="img-link">Image Link:</label>
+    <input
+      type="text"
+      name="imgLink"
+      id="img-link"
+      value="{{album.imgLink}}"
     />
 
-  <label for="description">Description:</label>
-  <textarea 
-    name="description" 
-    id="description"
-    cols="30"
-    rows="10"
-  >{{artist.description}}</textarea>
+    <input
+      type="submit"
+      value="Update Album"
+    />
 
-  <label for="img-link">Image Link:</label>
-  <input
-    type="text"
-    name="imgLink"
-    id="img-link"
-    value="{{artist.imgLink}}"
-  />
+  </form>  
+</div>
 
-  <input
-    type="submit"
-    value="Update Artist"
-  />
-
-</form>

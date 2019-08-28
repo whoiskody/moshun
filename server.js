@@ -19,7 +19,7 @@ const methodOverride = require('method-override')
  */
 const { artistRouter } = require('./controllers/artist.js')
 const { albumRouter } = require('./controllers/album.js')
-const { singleRouter } = require('./controllers/single.js')
+const { commentRouter } = require('./controllers/comment.js')
 
 /* Step 3
  *
@@ -63,14 +63,13 @@ app.set('view engine', 'hbs')
  * add router for the application to use. The first argument is a prefix to all
  * the paths defined in the router.
  */
-
 app.get('/', (req, res) => {
     res.redirect('/artists')
 })
 
 app.use('/artists', artistRouter)
 app.use('/artists/:artistId/albums', albumRouter)
-app.use('/artists/:artistId/albums/:albumId/single', singleRouter)
+app.use('/artists/:artistId/comments', commentRouter)
 
 /* Step 5
  *

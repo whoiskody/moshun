@@ -1,0 +1,62 @@
+<a href="/artists">All Artists</a>
+
+<section class="section">
+    <div class="container">
+        <div id="column1">
+            <div id="artistName" class="rounded float-left display-4">
+                {{artist.name}}
+            </div>
+            <div>
+                <img 
+                    width="250" 
+                    height="250"
+                    src="{{artist.imgLink}}" 
+                    class="rounded float-left" 
+                    id="artistImage"
+                    alt="Image of {{artist.name}}"
+                >
+            </div>
+        </div>
+
+        <div id="column2">
+            <p>Rating: {{artist.rating}}</p>
+            <p>Genre: {{artist.genre}}</p>
+            <div id="artist-buttons">
+                <form method="GET" action="/artists/{{artist._id}}/edit">
+                        <input type="submit" value="Edit Artist" class="btn btn-outline-primary btn-lg edit-artist">
+                </form>
+
+                 <form method="POST" action="/artists/{{artist._id}}?_method=DELETE">
+                        <input type="submit" value="Delete Artist" class="btn btn-outline-secondary btn-lg delete-artist">
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="albumSection">
+    <div class="rounded display-4">Albums</div>
+    <form method="GET" action="/artists/{{artist._id}}/newAlbum">
+        <input class="btn btn-info post-comment" type="submit" value="Add Album">
+    </form>
+    <div class="body">
+        hi
+        {{#each album}}
+        <div class="list">
+            <p>{{name}}</p>
+            <p>{{rating}}</p>
+            <p>{{imgLink}}</p>  
+        </div>
+        {{/each}}
+    </div>
+
+    <form method="GET" action="/artists/{{artistId}}/album/{{_id}}/edit">
+                        <input type="submit" value="Edit Album" class="btn btn-outline-info" id="edit-album">
+    </form>
+
+    <form method="POST" action="/artists/{{artistId}}/album/{{_id}}?_method=DELETE">
+                        <input type="submit" value="Delete Album" class="btn btn-outline-secondary"
+                            id="delete-album">
+    </form>
+
+</section>
