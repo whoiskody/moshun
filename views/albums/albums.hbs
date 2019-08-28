@@ -9,39 +9,37 @@
 </div>
 
 
-<table class="table">
-    <thread>
-        <tr>
-            <th>Album Cover</th>
-            <th>Album</th>
-            <th>Artist</th>
-            <th>Genre</th>
-            <th>Rating</th>
-        </tr>
-    </thread>
-    <tbody>
-        {{#each albums}}
-        <tr>
-            <td>
-               <img src="{{imgLink}}" alt="Image of {{name}}"  width="210" height="200"
-                        xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false"
-                        role="img"> 
-            </td>
-            
-            <td>{{name}}</td>
-            <td>{{artistName}}</td>
-            <td>{{genre}}</td>
-            <td>{{rating}}</td>
-            <td>
-                <form method="GET" action="/artists/{{artistId}}/albums/{{_id}}/edit">
-                    <input type="submit" value="Edit Album">
-                </form>
-
-                <form method="POST" action="/artists/{{artistId}}/albums/{{_id}}?_method=DELETE">
-                    <input type="submit" value="Delete Album">
-                </form>
-            </td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            {{#each albums}}
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <img src="{{imgLink}}" alt="Image of {{name}}"  width="210" height="200"
+                                xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false"
+                                role="img"
+                    > 
+                    <title>{{name}}</title>
+                    <rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef"
+                        dy=".3em">{{name}}</text>
+                    </svg>
+                    <p>{{artistName}}</p>
+                    <p>{{genre}}</p>
+                    <p>{{rating}}</p>
+                </div>
+                <div class="btn2">
+                    <form method="GET" action="/artists/{{artistId}}/albums/{{_id}}/edit">
+                        <input type="submit" value="Edit Album">
+                    </form>
+                </div>
+                    
+                <div class="btn2">
+                    <form method="POST" action="/artists/{{artistId}}/albums/{{_id}}?_method=DELETE">
+                        <input type="submit" value="Delete Album">
+                    </form>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>
