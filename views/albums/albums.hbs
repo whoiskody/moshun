@@ -1,10 +1,13 @@
-<div><a href="/artists/{{artist._id}}">Return to {{artist.name}}'s Review Page</a></div>
-<div><a href="/artists">Return to Artist Directory</a></div>
-<h2>{{artist.name}}'s Albums</h2>
+<div class='headest'>
+    <div><a href="/artists/{{artist._id}}">Return to {{artist.name}}'s Review Page</a></div>
+    <div><a href="/artists">Return to Artist Directory</a></div>
+    <h2 class="title">{{artist.name}}'s Albums</h2>
 
-<form method="GET" action="/artists/{{artist._id}}/albums/new">
-    <input type="submit" value="Create New Album">
-</form>
+    <form method="GET" action="/artists/{{artist._id}}/albums/new">
+        <input type="submit" value="Create New Album">
+    </form>
+</div>
+
 
 <table class="table">
     <thread>
@@ -19,7 +22,12 @@
     <tbody>
         {{#each albums}}
         <tr>
-            <td>{{imgLink}}</td>
+            <td>
+               <img src="{{imgLink}}" alt="Image of {{name}}"  width="210" height="200"
+                        xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false"
+                        role="img"> 
+            </td>
+            
             <td>{{name}}</td>
             <td>{{artistName}}</td>
             <td>{{genre}}</td>
